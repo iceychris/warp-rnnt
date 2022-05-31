@@ -1,7 +1,7 @@
 #include <tuple>
 #include <string>
 
-#include <THC/THC.h>
+#include <c10/cuda/CUDAStream.h>
 
 #include <torch/types.h>
 #include <torch/extension.h>
@@ -78,7 +78,7 @@ std::tuple<at::Tensor, at::Tensor> rnnt_loss(
     at::Tensor alphas = at::empty(buffer_shape, buffer_opts);
     at::Tensor betas = at::empty(buffer_shape, buffer_opts);
 
-    auto stream = at::cuda::getCurrentCUDAStream(xs.device().index());
+    auto stream = c10::cuda::getCurrentCUDAStream(xs.device().index());
 
     rnntStatus_t status;
 
