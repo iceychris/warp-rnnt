@@ -18,8 +18,9 @@ def get_long_description():
         return f.read()
 
 
-if not torch.cuda.is_available():
-    raise Exception("CPU version is not implemented")
+# skip check for gpu (useful in docker builds)
+# if not torch.cuda.is_available():
+#     raise Exception("CPU version is not implemented")
 
 
 requirements = get_requirements()
